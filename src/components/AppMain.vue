@@ -23,9 +23,10 @@ export default {
     <main>
         <div class="container">
             <div class="row">
-                <CardFilm v-for="film in state.BoolflixList" :filmTitle="film.title"
-                    :filmOriginalTitle="film.original_title" :filmOriginalLanguage="film.original_language"
-                    :filmVoteAverage="film.vote_average" />
+
+                <CardFilm v-for="film in state.filmList" :filmTitle="film.title" :filmOriginalTitle="film.original_title"
+                    :filmOriginalLanguage="film.original_language" :filmVoteAverage="film.vote_average"
+                    :flag="film.original_language" />
             </div>
         </div>
 
