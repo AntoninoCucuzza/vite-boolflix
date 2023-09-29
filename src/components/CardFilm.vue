@@ -9,6 +9,7 @@ export default {
         }
     },
     props: [
+        'filmPoster',
         'filmTitle',
         'filmOriginalTitle',
         'filmOriginalLanguage',
@@ -21,6 +22,9 @@ export default {
                 return this.flag_url + 'JP.png';
             } else if (flag === 'EN') {
                 return this.flag_url + 'GB.png';
+            } else if (flag === 'KO') {
+                return this.flag_url + 'KR.png';
+
             } else {
                 return this.flag_url + flag + '.png';
             }
@@ -35,10 +39,12 @@ export default {
 <template>
     <div class="d-flex flex-column col-2 g-3">
         <div class="card">
-            <!--   <img :src="filmImg" alt=""> -->
+            <img v-if="imgMissing" class="img-fluid" :src="'https://image.tmdb.org/t/p/w780/' + `${filmPoster}`"
+                @error="pictureLoadingError()" alt="">
+            <img v-else class="img-fluid" :src="error_flag" />
             <h1>{{ filmTitle }}</h1>
             <h2>{{ filmOriginalTitle }}</h2>
-            <p>{{ filmOriginalLanguage }} {{ filmVoteAverage }}</p>
+            <p>{{ filmOriginalLanguage }} {{ filmVoteAverage / 2 }}</p>
             <img v-if="imgMissing" class="flag" :src="getFlag()" @error="pictureLoadingError()" alt="">
             <img v-else class="flag" :src="error_flag" />
 

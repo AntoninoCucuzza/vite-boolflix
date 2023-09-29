@@ -26,13 +26,14 @@ export default {
         <div class="container">
             <div class="row">
                 <h1>movie</h1>
-                <CardFilm v-for="film in state.filmList" :filmTitle="film.title" :filmOriginalTitle="film.original_title"
-                    :filmOriginalLanguage="film.original_language" :filmVoteAverage="film.vote_average" />
+                <CardFilm v-for="film in state.filmList" :filmPoster="film.poster_path" :filmTitle="film.title"
+                    :filmOriginalTitle="film.original_title" :filmOriginalLanguage="film.original_language"
+                    :filmVoteAverage="film.vote_average" />
 
                 <h1>tv series</h1>
-                <CardSeries v-for=" series in state.tvSeriesList" :seriesName="series.name"
-                    :seriesOriginalName="series.original_name" :seriesOriginalLanguage="series.origin_country"
-                    :seriesVoteAverage="series.vote_average" />
+                <CardSeries v-for=" series in state.tvSeriesList" :seriesPoster="series.poster_path"
+                    :seriesName="series.name" :seriesOriginalName="series.original_name"
+                    :seriesOriginalLanguage="series.origin_country" :seriesVoteAverage="series.vote_average" />
 
             </div>
         </div>

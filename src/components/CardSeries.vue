@@ -9,6 +9,7 @@ export default {
         }
     },
     props: [
+        'seriesPoster',
         'seriesName',
         'seriesOriginalName',
         'seriesOriginalLanguage',
@@ -34,12 +35,15 @@ export default {
 </script>
 
 <template>
-    <div class="d-flex flex-column col-3 g-3">
+    <div class="d-flex flex-column col-2 g-3">
         <div class="card">
-            <!--   <img :src="filmImg" alt=""> -->
+            <img v-if="imgMissing" class="img-fluid" :src="'https://image.tmdb.org/t/p/w780/' + `${seriesPoster}`"
+                @error="pictureLoadingError()" alt="">
+            <img v-else class="img-fluid" :src="error_flag" />
+
             <h1>{{ seriesName }}</h1>
             <h2>{{ seriesOriginalName }}</h2>
-            <p>{{ seriesOriginalLanguage[0] }} {{ seriesVoteAverage }}</p>
+            <p>{{ seriesOriginalLanguage[0] }} {{ seriesVoteAverage / 2 }}</p>
             <img v-if="imgMissing" class="flag" :src="getFlag()" @error="pictureLoadingError()" alt="">
             <img v-else class="flag" :src="error_flag" />
 
