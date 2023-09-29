@@ -13,7 +13,6 @@ export default {
     },
     methods: {
         lookingFor() {
-            /* console.log(state.base_url + `&query=${this.searchFor}`); */
 
             /* chiamata per film */
             state.movie_url = 'https://api.themoviedb.org/3/search/movie?api_key=70c44c389e206232e0acaece4703adc9'
@@ -21,7 +20,6 @@ export default {
             this.state.movie_url = newMovieUrl
 
             state.fetchData(newMovieUrl)
-            console.log(newMovieUrl);
 
 
             /* chiamata per serie tv */
@@ -30,8 +28,6 @@ export default {
             this.state.tv_series_url = newTvSeriesUrl
 
             state.fetchData(newTvSeriesUrl)
-            console.log(newTvSeriesUrl);
-
             this.searchFor = ''
         }
     },

@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'CardFilm',
+    name: 'CardSeries',
     data() {
         return {
             flag_url: 'https://www.countryflagicons.com/FLAT/64/',
@@ -9,14 +9,14 @@ export default {
         }
     },
     props: [
-        'filmTitle',
-        'filmOriginalTitle',
-        'filmOriginalLanguage',
-        'filmVoteAverage',
+        'seriesName',
+        'seriesOriginalName',
+        'seriesOriginalLanguage',
+        'seriesVoteAverage',
     ],
     methods: {
         getFlag() {
-            const flag = this.filmOriginalLanguage.toUpperCase();
+            const flag = this.seriesOriginalLanguage[0].toUpperCase();
             if (flag === 'JA') {
                 return this.flag_url + 'JP.png';
             } else if (flag === 'EN') {
@@ -29,16 +29,17 @@ export default {
             this.imgMissing = false
         }
     }
+
 }
 </script>
 
 <template>
-    <div class="d-flex flex-column col-2 g-3">
+    <div class="d-flex flex-column col-3 g-3">
         <div class="card">
             <!--   <img :src="filmImg" alt=""> -->
-            <h1>{{ filmTitle }}</h1>
-            <h2>{{ filmOriginalTitle }}</h2>
-            <p>{{ filmOriginalLanguage }} {{ filmVoteAverage }}</p>
+            <h1>{{ seriesName }}</h1>
+            <h2>{{ seriesOriginalName }}</h2>
+            <p>{{ seriesOriginalLanguage[0] }} {{ seriesVoteAverage }}</p>
             <img v-if="imgMissing" class="flag" :src="getFlag()" @error="pictureLoadingError()" alt="">
             <img v-else class="flag" :src="error_flag" />
 
@@ -51,4 +52,4 @@ export default {
 .flag {
     width: 64px;
 }
-</style>    
+</style>
