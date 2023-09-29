@@ -37,7 +37,7 @@ export default {
 <template>
     <div class="d-flex flex-column col-2 g-3">
         <div class="card">
-            <img v-if="imgMissing" class="img-fluid" :src="'https://image.tmdb.org/t/p/w780/' + `${seriesPoster}`"
+            <img v-if="imgMissing" class="img-fluid" :src="'https://image.tmdb.org/t/p/w342/' + `${seriesPoster}`"
                 @error="pictureLoadingError()" alt="">
             <img v-else class="img-fluid" :src="error_flag" />
 
