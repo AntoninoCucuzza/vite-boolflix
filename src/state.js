@@ -4,10 +4,18 @@ import axios from 'axios';
 export const state = reactive({
 
     movie_url: 'https://api.themoviedb.org/3/search/movie?api_key=70c44c389e206232e0acaece4703adc9',
+
     tv_series_url: 'https://api.themoviedb.org/3/search/tv?api_key=70c44c389e206232e0acaece4703adc9',
+
+    popular_tv_url: 'https://api.themoviedb.org/3/tv/popular?api_key=70c44c389e206232e0acaece4703adc9',
+
+    popular_movie_url: 'https://api.themoviedb.org/3/movie/popular?api_key=70c44c389e206232e0acaece4703adc9',
+
 
     filmList: [],
     tvSeriesList: [],
+    popularMovie: [],
+    popularTv: [],
 
     fetchData() {
         this.fetchSeries()
