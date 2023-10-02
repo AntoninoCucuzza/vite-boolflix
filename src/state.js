@@ -13,14 +13,18 @@ export const state = reactive({
 
 
     filmList: [],
+
     tvSeriesList: [],
-    popularMovie: [],
+
     popularTv: [],
+
+    popularMovie: [],
 
     fetchData() {
         this.fetchSeries()
         this.fetchMovie()
-
+        this.fetchPopularTv()
+        this.fetchPopularMovie()
     },
 
     fetchMovie() {
@@ -45,7 +49,30 @@ export const state = reactive({
             .catch(error => {
                 console.log(error);
             });
-    }
+    },
 
+    fetchPopularTv() {
+        axios
+            .get(this.popular_tv_url)
+            .then(response => {
+                this.filpopularTvmList = response.data.results;
+            })
+            .catch(error => {
+                console.log(error);
+            });
 
+    },
+
+    fetchPopularMovie() {
+        axios
+            .get(this.popular_movie_url)
+            .then(response => {
+
+                this.popularMovie = response.data.results;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    },
 })

@@ -36,16 +36,15 @@ export default {
 </script>
 
 <template>
-    <div class="d-flex flex-column col-2 g-3 wrapper">
+    <div class="d-flex flex-column col-6 col-md-4 col-xxl-2 g-3 wrapper">
         <div class="thumb d-flex align-items-center ">
             <img v-if="imgMissing" class="img-fluid thumb" :src="'https://image.tmdb.org/t/p/w500/' + `${seriesPoster}`"
                 @error="pictureLoadingError()" alt="">
             <img v-else class="img-fluid thumb" :src="error_thumb" />
             <div class="overlay">
 
-                <h1>{{ seriesName }}</h1>
-                <h2>{{ seriesOriginalName }}</h2>
-                <p>{{ seriesOriginalLanguage[0] }} {{ seriesVoteAverage / 2 }}</p>
+                <h2>{{ seriesName }}</h2>
+                <h3>original title: {{ seriesOriginalName }}</h3>
                 <div class="d-flex stars">
 
                     <svg class="star_color" v-for="star in Math.round(seriesVoteAverage / 2)"

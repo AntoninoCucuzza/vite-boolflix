@@ -1,14 +1,15 @@
 <script>
 import { state } from '../state.js';
 import CardFilm from './CardFilm.vue';
-import CardSeries from './CardSeries.vue'
-
+import CardSeries from './CardSeries.vue';
+import SliderMovie from './SliderMovie.vue'
 state
 export default {
     name: 'AppMain',
     data() {
         return {
-            state
+            state,
+            activeFilm: 0,
         }
     },
     created() {
@@ -17,6 +18,10 @@ export default {
     components: {
         CardFilm,
         CardSeries,
+        SliderMovie
+    },
+    methods: {
+
     }
 
 }
@@ -24,8 +29,12 @@ export default {
 <template>
     <main>
         <div class="contenitore">
+            <h1>Popular Movie</h1>
+            <div class="row no-wrap">
+                <SliderMovie v-for="movie in state.popularMovie" :Poster="movie.poster_path" />
+            </div>
+
             <div class="row">
-                <h1>popolari</h1>
 
                 <h1 v-if="state.filmList.length > 0">movie</h1>
                 <CardFilm v-for="film in state.filmList" :filmPoster="film.poster_path" :filmTitle="film.title"
@@ -36,7 +45,6 @@ export default {
                 <CardSeries v-for=" series in state.tvSeriesList" :seriesPoster="series.poster_path"
                     :seriesName="series.name" :seriesOriginalName="series.original_name"
                     :seriesOriginalLanguage="series.origin_country" :seriesVoteAverage="series.vote_average" />
-
             </div>
         </div>
 
@@ -54,6 +62,12 @@ main {
         width: 90%;
         max-width: 1800px;
         margin: 0 auto;
+
+        .no-wrap {
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+        }
+
     }
 }
 </style>
