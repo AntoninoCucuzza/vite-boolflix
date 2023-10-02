@@ -12,6 +12,7 @@ export default {
     props: [
         'filmPoster',
         'filmTitle',
+        'overview',
         'filmOriginalTitle',
         'filmOriginalLanguage',
         'filmVoteAverage',
@@ -38,7 +39,7 @@ export default {
 </script>
 
 <template>
-    <div class="d-flex flex-column col-6 col-md-4 col-xxl-2  g-3 wrapper">
+    <div class="d-flex flex-column col-sm-6 col-md-4 col-xxl-2  g-3 wrapper">
         <div class="thumb d-flex align-items-center ">
 
             <img v-if="imgMissing" class="img-fluid thumb " :src="'https://image.tmdb.org/t/p/w500/' + `${filmPoster}`"
@@ -48,6 +49,7 @@ export default {
             <div class="overlay">
                 <h2>{{ filmTitle }}</h2>
                 <h3>Titolo Originale: {{ filmOriginalTitle }}</h3>
+                <p>{{ overview }}</p>
                 <div class="d-flex stars">
 
                     <svg class="star_color" v-for="star in Math.round(filmVoteAverage / 2)"

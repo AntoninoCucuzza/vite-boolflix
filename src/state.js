@@ -7,8 +7,6 @@ export const state = reactive({
 
     tv_series_url: 'https://api.themoviedb.org/3/search/tv?api_key=70c44c389e206232e0acaece4703adc9',
 
-    popular_tv_url: 'https://api.themoviedb.org/3/tv/popular?api_key=70c44c389e206232e0acaece4703adc9',
-
     popular_movie_url: 'https://api.themoviedb.org/3/movie/popular?api_key=70c44c389e206232e0acaece4703adc9',
 
 
@@ -16,14 +14,11 @@ export const state = reactive({
 
     tvSeriesList: [],
 
-    popularTv: [],
-
     popularMovie: [],
 
     fetchData() {
         this.fetchSeries()
         this.fetchMovie()
-        this.fetchPopularTv()
         this.fetchPopularMovie()
     },
 
@@ -51,17 +46,6 @@ export const state = reactive({
             });
     },
 
-    fetchPopularTv() {
-        axios
-            .get(this.popular_tv_url)
-            .then(response => {
-                this.filpopularTvmList = response.data.results;
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-    },
 
     fetchPopularMovie() {
         axios

@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'CardSeries',
+    name: 'PopularMovie',
     data() {
         return {
             flag_url: 'https://www.countryflagicons.com/FLAT/64/',
@@ -10,20 +10,23 @@ export default {
         }
     },
     props: [
-        'seriesPoster',
-        'seriesName',
+        'Poster',
+        'Title',
+        'OriginalTitle',
         'overview',
-        'seriesOriginalName',
-        'seriesOriginalLanguage',
-        'seriesVoteAverage',
+        'OriginalLanguage',
+        'VoteAverage',
     ],
     methods: {
         getFlag() {
-            const flag = this.seriesOriginalLanguage[0].toUpperCase();
+            const flag = this.OriginalLanguage.toUpperCase();
             if (flag === 'JA') {
                 return this.flag_url + 'JP.png';
             } else if (flag === 'EN') {
                 return this.flag_url + 'GB.png';
+            } else if (flag === 'KO') {
+                return this.flag_url + 'KR.png';
+
             } else {
                 return this.flag_url + flag + '.png';
             }
@@ -32,30 +35,26 @@ export default {
             this.imgMissing = false
         }
     }
-
 }
 </script>
 
 <template>
-    <div class="d-flex flex-column col-6 col-md-4 col-xxl-2 g-3 wrapper">
+    <div class="d-flex flex-column col-sm-6 col-md-4 col-xxl-2  g-3 wrapper">
         <div class="thumb d-flex align-items-center ">
-            <img v-if="imgMissing" class="img-fluid thumb" :src="'https://image.tmdb.org/t/p/w500/' + `${seriesPoster}`"
-                @error="pictureLoadingError()" alt="">
-            <img v-else class="img-fluid thumb" :src="error_thumb" />
+            <img class="img-fluid thumb" :src="'https://image.tmdb.org/t/p/w500/' + `${Poster}`" alt=""
+                @error="pictureLoadingError()">
             <div class="overlay">
-
-                <h2>{{ seriesName }}</h2>
-                <h3>original title: {{ seriesOriginalName }}</h3>
+                <h2>{{ Title }}</h2>
+                <h3>Titolo Originale: {{ OriginalTitle }}</h3>
                 <p>{{ overview }}</p>
                 <div class="d-flex stars">
 
-                    <svg class="star_color" v-for="star in Math.round(seriesVoteAverage / 2)"
-                        xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                    <svg class="star_color" v-for="star in Math.round(VoteAverage / 2)" xmlns="http://www.w3.org/2000/svg"
+                        height="1em" viewBox="0 0 576 512">
                         <path
                             d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                     </svg>
-
-                    <svg class="not_color" v-for="star in Math.round(5 - seriesVoteAverage / 2)"
+                    <svg class="not_color" v-for="star in Math.round(5 - VoteAverage / 2)"
                         xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
 
                         <path
@@ -70,5 +69,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../../src/assets/scss/app.scss' as *;
+@use '../assets/scss/app.scss' as *;
 </style>
